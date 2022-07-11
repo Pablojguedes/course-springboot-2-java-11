@@ -87,6 +87,10 @@ public class Order implements Serializable{
 		this.client = client;
 	}
 	
+	public Set<OrderItem> getItens(){
+		return items;
+	}
+
 	public Payment getPayment() {
 		return payment;
 	}
@@ -95,10 +99,14 @@ public class Order implements Serializable{
 		this.payment = payment;
 	}
 	
-	public Set<OrderItem> getItens(){
-		return items;
+	public Double getTotal() {
+		double sum = 0;
+		for(OrderItem x : items)
+			sum += x.getSubTotal();
+		
+		return sum;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
